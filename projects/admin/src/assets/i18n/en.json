@@ -1,0 +1,17 @@
+{
+  "tasks":{
+      "addtask":"add task"
+  },
+  "user":{
+
+  },
+  "common":{
+    "loading":"loading"
+  },
+  "toastr":{
+
+  },
+  "button":{
+
+  }
+}

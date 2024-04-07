@@ -1,0 +1,40 @@
+
+<div class="container">
+  <div class="row d-flex align-items-center p-4">
+    <div class="col-md-6  position-relative p-0">
+      <div class="over-lay"></div>
+      <img src="../../../../assets/image/555.jpg" alt="" class="w-100 h-100">
+    </div>
+    <div class="col-md-6">
+      <div class="alert alert-danger" *ngIf="messageerror.length > 0">{{messageerror}}</div>
+        <div class="w-100 m-auto rounded shadow-lg p-3 mb-5 bg-white">
+          <form [formGroup]="FormLogin" (ngSubmit)="login(FormLogin)">
+            <label for="email">Email</label>
+            <input type="text" id="email" class="form-control" formControlName="email">
+            <div class="alert alert-danger" *ngIf="FormLogin.controls['email'].touched && FormLogin.controls['email'].errors">
+               <span *ngIf="FormLogin.controls['email'].errors?.['required']">your email required</span>
+               <span *ngIf="FormLogin.controls['email'].errors?.['email']">your email invaild</span>
+            </div>
+            <label for="password">Password</label>
+           <div class="position-relative">
+            <input [type]="hide ? 'password' : 'type'" id="password" class="form-control" formControlName="password" >
+            <i class="fas position-absolute top-50 end-0 translate-middle-y me-2" [ngClass]="{'fa-eye':hide , 'fa-eye-slash':!hide}" (click)="changevalue()" ></i>
+           </div>
+           <div class="alert alert-danger" *ngIf="FormLogin.controls['password'].touched && FormLogin.controls['password'].errors">
+            <span *ngIf="FormLogin.controls['password'].errors?.['required']">your password required</span>
+            <span *ngIf="FormLogin.controls['password'].errors?.['minlength']">your pass is short</span>
+            <span *ngIf="FormLogin.controls['password'].errors?.['maxlength']">your pass is long</span>
+         </div>
+            <button [disabled]="FormLogin.invalid" class=" main-bac  d-block mt-2 ms-auto" type="submit">
+              <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
+              <span *ngIf="!isLoading">Login</span>
+            </button>
+
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+

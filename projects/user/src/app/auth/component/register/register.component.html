@@ -1,0 +1,50 @@
+
+<div class="container">
+  <div class="row d-flex align-items-center ">
+    <div class="col-md-6  position-relative p-0">
+      <div class="over-lay"></div>
+      <img src="../../../../assets/image/888.jpg" alt="" class="w-100 h-100">
+    </div>
+    <div class="col-md-6">
+      <div class="w-90 m-auto rounded shadow-lg p-3 mb-5 bg-white">
+        <form [formGroup]="registerForm" (ngSubmit)="register(registerForm)">
+          <label for="email">UserName</label>
+          <input type="text" id="username" class="form-control" formControlName="username">
+          <div class="alert alert-danger" *ngIf="registerForm.controls['username'].touched && registerForm.controls['username'].errors">
+            <span *ngIf="registerForm.controls['username'].errors?.['required']">your username required</span>
+          </div>
+          <label for="email">Email</label>
+          <input type="text" id="email" class="form-control" formControlName="email">
+          <div class="alert alert-danger" *ngIf="registerForm.controls['email'].touched && registerForm.controls['email'].errors">
+            <span *ngIf="registerForm.controls['email'].errors?.['required']">your email required</span>
+            <span *ngIf="registerForm.controls['email'].errors?.['email']">your email invaild</span>
+          </div>
+          <label for="password">Password</label>
+          <div class="position-relative">
+            <input [type]="hide ? 'password' : 'type'" id="password" class="form-control" formControlName="password" >
+            <i class="fas position-absolute top-50 end-0 translate-middle-y me-2" [ngClass]="{'fa-eye':hide , 'fa-eye-slash':!hide}" (click)="changevalue()" ></i>
+          </div>
+          <label for="confirm">Confirm Password</label>
+          <div class="position-relative">
+            <input [type]="hiderepass ? 'password' : 'type'" id="confirm" class="form-control" formControlName="confirmpass" >
+            <i class="fas position-absolute top-50 end-0 translate-middle-y me-2" [ngClass]="{'fa-eye':hiderepass , 'fa-eye-slash':!hiderepass}" (click)="changevalue2()" ></i>
+          </div>
+          <div class="alert alert-danger" *ngIf="registerForm.controls['confirmpass'].touched && registerForm.controls['confirmpass'].errors">
+            <span *ngIf="registerForm.controls['confirmpass'].errors?.['required']">your confirmpass required</span>
+            <span *ngIf="registerForm.controls['confirmpass'].errors?.['minlength']">your confirmpass is short</span>
+            <span *ngIf="registerForm.controls['confirmpass'].errors?.['maxlength']">your confirmpass is long</span>
+            <span *ngIf="registerForm.controls['confirmpass'].errors?.['confirmErr']">your confirmpass must be the same of password</span>
+        </div>
+          <button [disabled]="registerForm.invalid" class="btn btn-success d-block mt-2 mx-auto px-5" type="submit">
+            <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
+            <span *ngIf="!isLoading">Register</span>
+          </button>
+          <div class="d-flex justify-content-center text-danger">
+             <a routerLink="/auth/login" class="text-danger" >Have Account!</a>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

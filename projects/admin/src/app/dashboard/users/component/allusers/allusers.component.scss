@@ -1,0 +1,38 @@
+table{
+  img{
+    width: 50px;
+    height: 50px;
+  }
+}
+:host ::ng-deep {
+  table {
+     /* margin-top: 0px; */
+      thead {
+          background-color: #f1600c!important;
+          .mat-header-cell {
+              color: #FFF;
+          }
+      }
+  }
+}
+.mat-mdc-table tbody, .mat-mdc-table tfoot, .mat-mdc-table thead, .mat-mdc-cell, .mat-mdc-footer-cell, .mat-mdc-header-row, .mat-mdc-row, .mat-mdc-footer-row, .mat-mdc-table .mat-mdc-header-cell{
+  text-align: center;
+}
+::ng-deep{
+  .ngx-pagination  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+    .ngx-pagination .current {
+      background: #f1600c !important;
+      border-radius: 50%;
+    }
+    .ngx-pagination a, .ngx-pagination button{
+      color: #f1600c !important;
+    }
+    /* Change size of pagination buttons */
+    .ngx-pagination button {
+      font-size: 16px;
+    }
+ }

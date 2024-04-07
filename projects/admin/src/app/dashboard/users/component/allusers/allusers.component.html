@@ -1,0 +1,66 @@
+
+
+<form  class="text-white mt-3">
+  <div class="row mt-2 ">
+          <div class="col-md-4">
+              <mat-form-field appearance="outline" class="w-100 ">
+                  <mat-label>search </mat-label>
+                  <input matInput (keyup)="seach($event.target)" placeholder="search by username">
+              </mat-form-field>
+          </div>
+  </div>
+</form>
+
+
+<div class="table-responsive">
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element ; let index=index"> {{index}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef> username </th>
+        <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> email </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="assignedTasks">
+        <th mat-header-cell *matHeaderCellDef> assignedTasks </th>
+        <td mat-cell *matCellDef="let element"> {{element.assignedTasks}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>status</th>
+        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>action</th>
+        <td mat-cell *matCellDef="let element ; let index=index" >
+          <div class="">
+            <button class="btn btn-danger px-3 mx-2" (click)="deleteUser(element._id ,index )">Delete</button>
+            <button   class="btn btn-success" *ngIf="element.status !== 'Active'" (click)="chagestatus(element._id ,element.status  ,index )" >Active</button>
+            <button  class="btn btn-primary" *ngIf="element.status == 'Active'" (click)="chagestatus(element._id ,element.status ,index  )">In-Active</button>
+          </div>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="text-white text-center"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns| paginate: { id: 'user',
+      itemsPerPage: 7,
+      currentPage: p,
+      totalItems: total}"></tr>
+  </table>
+  <div class="text-center mt-3">
+    <pagination-controls (pageChange)="changePage($event)" id="user"></pagination-controls>
+  </div>
+</div>

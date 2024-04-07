@@ -1,0 +1,25 @@
+<div class="row m-3 task-details d-flex align-items-center position-relative ">
+  <div class="col-md-4">
+    <img class="w-100" [src]="'https://crud-27v6.onrender.com/'+taskDetail?.image" alt="">
+  </div>
+  <div class="col-md-8">
+    <h3 class="maincolor">{{taskDetail?.title}}</h3>
+    <p class="secondcolor">DeadLine Date : {{taskDetail?.deadline}}</p>
+    <p class="secondcolor">{{taskDetail?.description}}</p>
+    <p class="maincolor">status : {{taskDetail?.status}}</p>
+    <div class="d-flex justify-content-around flex-wrap">
+      <button class="second-link " (click)="complete()"  [disabled]="taskDetail?.status=='Complete'"  >
+        <span>complete</span>
+      </button>
+
+     <!--  <button  class="btn btn-success d-block mt-2 mx-auto px-5" [disabled]="taskDetail?.status=='Complete'"  type="submit">
+
+        <span >complete</span>
+      </button> -->
+      <!-- -->
+    </div>
+    <button  class="btn btn-success postions " >
+      <a routerLink="/tasks" >Back To All Tasks</a>
+    </button>
+  </div>
+</div>
